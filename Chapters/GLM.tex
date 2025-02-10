@@ -1,0 +1,20 @@
+To reduce bias and variance in our model we use best subset selection, as we discussed in section \ref{sec_level1}. Looking at the results in table \ref{tab:BestSubset} we observe that the predictor $Rcyl$ gets added first, followed by $mgfe$/$ch$, $vphi$ and $age$. We already predicted that $Rcyl$ and $vphi$ were important predictors, and it makes sense that the model chooses almost randomly between the concentration predictors, since they are highly correlated.
+\input{Tables/OutcomeBestSubsetSelection}
+
+If we take a look at figure \ref{fig:BicAicAccuracy}
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=0.5\linewidth]{}
+%     \caption{Caption}
+%     \label{fig:enter-label}
+% \end{figure}
+we observe that the accuracy is highest for 10 predictors, but stays pretty much the same after adding $Rcyl$, where BIC is  at a minimum at 6 predictors and AIC keeps falling, but very little. This leads to the conclusion that the best number of predictors is 6. The accuracies are actually pretty low if you compare with the most naive classifier, which only predicts non-migrators, with an accuracy of 82,4\%, since the dataset is skewed towards non-migrators.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{Plots/BIC, AIC, ACC all 15.png}
+    \caption{BIC, AIC and Accuracy as a function of number of predictors in best subset selection}
+    \label{fig:BicAicAccuracy}
+\end{figure}
+
+% We then perform logistic regression on the full dataset, both using all of the predictors and yielding an accuracy of 83.1\% and only using the predictors found in best subset selection yielding an accuracy of 82,3\%, which curiously is lower than that of the most naive classifier that only predicts non-migrators, with an accuracy of 82,4\%. Both are actually lower than what we see from the models trained on sampled data, although this performance drop is likely due to not removing outliers from the full dataset and generally we can conclude that logistic regression is not a good fit for predicting migrators.
